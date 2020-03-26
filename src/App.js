@@ -13,12 +13,69 @@ class Square extends React.Component {
 }
 
 class Board extends React.Component {
+    renderSquare(i) {
+        return <Square value={i} />;
+    }
+
+    render() {
+        const status = 'Score: ' + this.props.score;
+        const grid = this.props.grid;
+
+        return (
+            <div>
+                <div className="status">{status}</div>
+                <div className="board-row">
+                    {this.renderSquare(grid[0][0])}
+                    {this.renderSquare(grid[0][1])}
+                    {this.renderSquare(grid[0][2])}
+                    {this.renderSquare(grid[0][3])}
+                </div>
+                <div className="board-row">
+                    {this.renderSquare(grid[1][0])}
+                    {this.renderSquare(grid[1][1])}
+                    {this.renderSquare(grid[1][2])}
+                    {this.renderSquare(grid[1][3])}
+                </div>
+                <div className="board-row">
+                    {this.renderSquare(grid[2][0])}
+                    {this.renderSquare(grid[2][1])}
+                    {this.renderSquare(grid[2][2])}
+                    {this.renderSquare(grid[2][3])}
+                </div>
+                <div className="board-row">
+                    {this.renderSquare(grid[3][0])}
+                    {this.renderSquare(grid[3][1])}
+                    {this.renderSquare(grid[3][2])}
+                    {this.renderSquare(grid[3][3])}
+                </div>
+                <div className="board-row">
+                    {<button onClick={() => this.props.onMovement(Direction.LEFT)}>
+                        {"LEFT"}
+                    </button >}
+                    {<button onClick={() => this.props.onMovement(Direction.UP)}>
+                        {"UP"}
+                    </button >}
+                    {<button onClick={() => this.props.onMovement(Direction.DOWN)}>
+                        {"DOWN"}
+                    </button >}
+                    {<button onClick={() => this.props.onMovement(Direction.RIGHT)}>
+                        {"RIGHT"}
+                    </button >}
+                </div>
+            </ div>
+        );
+    }
+}
+
+class Logic extends React.Component {
     constructor(props) {
         super(props);
         // this.GRID_SIZE = this.props.boardSize < 2 ? 4 : this.props.boardSize;
         this.GRID_SIZE = 4;
         this.NUM_START_TILES = 2;
         this.TWO_PROBABILITY = 0.9;
+
+        this.handleMovement = this.handleMovement.bind(this);
 
         const newGrid = [
             [0, 0, 0, 0],
@@ -35,6 +92,16 @@ class Board extends React.Component {
         for (let i = 0; i < this.NUM_START_TILES; i++) {
             this.addRandomTile();
         }
+    }
+
+    render() {
+        return (
+            <Board
+                score={this.state.score}
+                grid={this.state.grid}
+                onMovement={this.handleMovement}
+            />
+        );
     }
 
     addRandomTile() {
@@ -370,64 +437,6 @@ class Board extends React.Component {
             this.addRandomTile();
         }
     }
-
-
-
-
-    // UI PART //
-
-    renderSquare(i) {
-        return <Square value={i} />;
-    }
-
-    render() {
-        const status = 'Score: ' + this.state.score;
-        const grid = this.state.grid;
-
-        return (
-            <div>
-                <div className="status">{status}</div>
-                <div className="board-row">
-                    {this.renderSquare(grid[0][0])}
-                    {this.renderSquare(grid[0][1])}
-                    {this.renderSquare(grid[0][2])}
-                    {this.renderSquare(grid[0][3])}
-                </div>
-                <div className="board-row">
-                    {this.renderSquare(grid[1][0])}
-                    {this.renderSquare(grid[1][1])}
-                    {this.renderSquare(grid[1][2])}
-                    {this.renderSquare(grid[1][3])}
-                </div>
-                <div className="board-row">
-                    {this.renderSquare(grid[2][0])}
-                    {this.renderSquare(grid[2][1])}
-                    {this.renderSquare(grid[2][2])}
-                    {this.renderSquare(grid[2][3])}
-                </div>
-                <div className="board-row">
-                    {this.renderSquare(grid[3][0])}
-                    {this.renderSquare(grid[3][1])}
-                    {this.renderSquare(grid[3][2])}
-                    {this.renderSquare(grid[3][3])}
-                </div>
-                <div className="board-row">
-                    {<button onClick={() => this.handleMovement(Direction.LEFT)}>
-                        {"LEFT"}
-                    </button >}
-                    {<button onClick={() => this.handleMovement(Direction.UP)}>
-                        {"UP"}
-                    </button >}
-                    {<button onClick={() => this.handleMovement(Direction.DOWN)}>
-                        {"DOWN"}
-                    </button >}
-                    {<button onClick={() => this.handleMovement(Direction.RIGHT)}>
-                        {"RIGHT"}
-                    </button >}
-                </div>
-            </ div>
-        );
-    }
 }
 
 class App extends React.Component {
@@ -435,7 +444,7 @@ class App extends React.Component {
         return (
             <div className="game">
                 <div className="game-board">
-                    <Board />
+                    <Logic />
                 </div>
             </div>
         );

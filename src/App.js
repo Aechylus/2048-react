@@ -13,6 +13,55 @@ class Square extends React.Component {
 }
 
 class Board extends React.Component {
+    constructor(props) {
+        super(props);
+        this.keyPressHandler = this.keyPressHandler.bind(this);
+    }
+    componentWillMount() {
+        document.addEventListener("keydown", this.keyPressHandler, false);
+    }
+
+
+    componentWillUnmount() {
+        document.removeEventListener("keydown", this.keyPressHandler, false);
+    }
+
+    keyPressHandler(event) {
+        let keyPressed = event.key;
+        const upKeys = ["w", "W", "ArrowUp"];
+        const downKeys = ["s", "S", "ArrowDown"];
+        const leftKeys = ["a", "A", "ArrowLeft"];
+        const rightKeys = ["d", "D", "ArrowRight"];
+
+        for (let i = 0; i < upKeys.length; i++) {
+            if (keyPressed === upKeys[i]) {
+                this.props.onMovement(Direction.UP);
+                return;
+            }
+        }
+
+        for (let i = 0; i < downKeys.length; i++) {
+            if (keyPressed === downKeys[i]) {
+                this.props.onMovement(Direction.DOWN);
+                return;
+            }
+        }
+
+        for (let i = 0; i < leftKeys.length; i++) {
+            if (keyPressed === leftKeys[i]) {
+                this.props.onMovement(Direction.LEFT);
+                return;
+            }
+        }
+
+        for (let i = 0; i < rightKeys.length; i++) {
+            if (keyPressed === rightKeys[i]) {
+                this.props.onMovement(Direction.RIGHT);
+                return;
+            }
+        }
+    }
+
     renderSquare(i) {
         return <Square value={i} />;
     }
@@ -41,20 +90,6 @@ class Board extends React.Component {
                     {this.renderSquare(grid[3][1])}
                     {this.renderSquare(grid[3][2])}
                     {this.renderSquare(grid[3][3])}
-                </div>
-                <div className="board-row">
-                    {<button onClick={() => this.props.onMovement(Direction.LEFT)}>
-                        {"LEFT"}
-                    </button >}
-                    {<button onClick={() => this.props.onMovement(Direction.UP)}>
-                        {"UP"}
-                    </button >}
-                    {<button onClick={() => this.props.onMovement(Direction.DOWN)}>
-                        {"DOWN"}
-                    </button >}
-                    {<button onClick={() => this.props.onMovement(Direction.RIGHT)}>
-                        {"RIGHT"}
-                    </button >}
                 </div>
             </ div>
         );

@@ -1,37 +1,33 @@
-.App {
+.status {
+    margin-bottom: 1px;
     text-align: center;
+    font-size: 50px;
 }
 
-.status {
-    margin-bottom: 10px;
+.game {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    min-height: 100vh;
+}
+
+.board {
+    display: inline-grid;
+    grid-template-columns: auto auto auto auto;
+    padding: 10px;
+    text-align: center;
+    grid-gap: 10px;
 }
 
 .square {
     background: #fff;
-    border: 1px solid #999;
-    float: left;
-    font-size: 24px;
+    border: 1px solid #000000;
+    font-size: 28px;
     font-weight: bold;
     line-height: 100px;
     height: 100px;
-    margin-right: -1px;
-    margin-top: -1px;
-    padding: 0;
-    text-align: center;
     width: 100px;
-}
-
-/* .square:focus {
-  outline: none;
-} */
-
-.board-row:after {
-    clear: both;
-    content: "";
-    display: table;
-}
-
-.game {
-    position: relative;
-    /* bottom: 55px; */
+    text-align: center;
 }

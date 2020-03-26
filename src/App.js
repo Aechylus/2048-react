@@ -5,9 +5,9 @@ import Direction from './Direction';
 class Square extends React.Component {
     render() {
         return (
-            <button className="square">
+            <div className="square">
                 {this.props.value != 0 ? this.props.value : ""}
-            </button >
+            </div >
         );
     }
 }
@@ -24,25 +24,19 @@ class Board extends React.Component {
         return (
             <div>
                 <div className="status">{status}</div>
-                <div className="board-row">
+                <div className="board">
                     {this.renderSquare(grid[0][0])}
                     {this.renderSquare(grid[0][1])}
                     {this.renderSquare(grid[0][2])}
                     {this.renderSquare(grid[0][3])}
-                </div>
-                <div className="board-row">
                     {this.renderSquare(grid[1][0])}
                     {this.renderSquare(grid[1][1])}
                     {this.renderSquare(grid[1][2])}
                     {this.renderSquare(grid[1][3])}
-                </div>
-                <div className="board-row">
                     {this.renderSquare(grid[2][0])}
                     {this.renderSquare(grid[2][1])}
                     {this.renderSquare(grid[2][2])}
                     {this.renderSquare(grid[2][3])}
-                </div>
-                <div className="board-row">
                     {this.renderSquare(grid[3][0])}
                     {this.renderSquare(grid[3][1])}
                     {this.renderSquare(grid[3][2])}
@@ -443,9 +437,7 @@ class App extends React.Component {
     render() {
         return (
             <div className="game">
-                <div className="game-board">
-                    <Logic />
-                </div>
+                <Logic />
             </div>
         );
     }

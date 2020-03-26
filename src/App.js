@@ -6,7 +6,7 @@ class Square extends React.Component {
     render() {
         return (
             <div className="square">
-                {this.props.value != 0 ? this.props.value : ""}
+                {this.props.value !== 0 ? this.props.value : ""}
             </div >
         );
     }
@@ -103,13 +103,13 @@ class Logic extends React.Component {
         let count = 0;
         for (let i = 0; i < this.GRID_SIZE; i++) {
             for (let j = 0; j < this.GRID_SIZE; j++) {
-                if (this.state.grid[i][j] == 0) {
+                if (this.state.grid[i][j] === 0) {
                     count++;
                 }
             }
         }
 
-        if (count == 0) {//if no empty space, don't add more tiles
+        if (count === 0) {//if no empty space, don't add more tiles
             return;
         }
 
@@ -123,11 +123,11 @@ class Logic extends React.Component {
         let iteration = 0; //to count numbers of 0s passed
         for (let i = 0; i < this.GRID_SIZE; i++) {
             for (let j = 0; j < this.GRID_SIZE; j++) {
-                if (iteration == tileLocation && this.state.grid[i][j] == 0) {
+                if (iteration === tileLocation && this.state.grid[i][j] === 0) {
                     this.state.grid[i][j] = tileValue;
                     return;
                 }
-                if (this.state.grid[i][j] == 0) {
+                if (this.state.grid[i][j] === 0) {
                     iteration++;//increment count when passing another 0
                 }
             }
@@ -136,19 +136,19 @@ class Logic extends React.Component {
 
     canMove(direction) {
         //uses 4 helper methods, 1 for each direction.
-        if (direction == Direction.RIGHT) {
+        if (direction === Direction.RIGHT) {
             return this.canMoveRight();
         }
 
-        if (direction == Direction.LEFT) {
+        if (direction === Direction.LEFT) {
             return this.canMoveLeft();
         }
 
-        if (direction == Direction.UP) {
+        if (direction === Direction.UP) {
             return this.canMoveUp();
         }
 
-        if (direction == Direction.DOWN) {
+        if (direction === Direction.DOWN) {
             return this.canMoveDown();
         }
         return false; //if direction is invalid
@@ -159,9 +159,9 @@ class Logic extends React.Component {
             for (let j = this.GRID_SIZE - 1; j > 0; j--) {
                 //1: two adjacent horizontal tiles have the same value
                 //and non 0 (both tiles can combine)
-                let check1 = this.state.grid[i][j] == this.state.grid[i][j - 1] && this.state.grid[i][j - 1] != 0;
+                let check1 = this.state.grid[i][j] === this.state.grid[i][j - 1] && this.state.grid[i][j - 1] !== 0;
                 //2: an empty space exists and a non-0 tile exists on its left
-                let check2 = this.state.grid[i][j] == 0 && this.state.grid[i][j - 1] != 0;
+                let check2 = this.state.grid[i][j] === 0 && this.state.grid[i][j - 1] !== 0;
                 if (check1 || check2) {
                     return true;
                 }
@@ -175,9 +175,9 @@ class Logic extends React.Component {
             for (let j = 0; j < this.GRID_SIZE - 1; j++) {
                 //1: two adjacent horizontal tiles have the same value
                 //and non 0 (both tiles can combine)
-                let check1 = this.state.grid[i][j] == this.state.grid[i][j + 1] && this.state.grid[i][j + 1] != 0;
+                let check1 = this.state.grid[i][j] === this.state.grid[i][j + 1] && this.state.grid[i][j + 1] !== 0;
                 //2: an empty space exists and a non-0 tile exists on its right
-                let check2 = this.state.grid[i][j] == 0 && this.state.grid[i][j + 1] != 0;
+                let check2 = this.state.grid[i][j] === 0 && this.state.grid[i][j + 1] !== 0;
                 if (check1 || check2) {
                     return true;
                 }
@@ -191,9 +191,9 @@ class Logic extends React.Component {
             for (let j = 0; j < this.GRID_SIZE; j++) {
                 //1: two adjacent vertical tiles have the same value
                 //and non 0 (both tiles can combine)
-                let check1 = this.state.grid[i][j] == this.state.grid[i + 1][j] && this.state.grid[i + 1][j] != 0;
+                let check1 = this.state.grid[i][j] === this.state.grid[i + 1][j] && this.state.grid[i + 1][j] !== 0;
                 //2: an empty space exists and a non-0 tile exists below it
-                let check2 = this.state.grid[i][j] == 0 && this.state.grid[i + 1][j] != 0;
+                let check2 = this.state.grid[i][j] === 0 && this.state.grid[i + 1][j] !== 0;
                 if (check1 || check2) {
                     return true;
                 }
@@ -207,9 +207,9 @@ class Logic extends React.Component {
             for (let j = 0; j < this.GRID_SIZE; j++) {
                 //1: two adjacent vertical tiles have the same value
                 //and non 0 (both tiles can combine)
-                let check1 = this.state.grid[i][j] == this.state.grid[i - 1][j] && this.state.grid[i - 1][j] != 0;
+                let check1 = this.state.grid[i][j] === this.state.grid[i - 1][j] && this.state.grid[i - 1][j] !== 0;
                 //2: an empty space exists and a non-0 tile exists above it
-                let check2 = this.state.grid[i][j] == 0 && this.state.grid[i - 1][j] != 0;
+                let check2 = this.state.grid[i][j] === 0 && this.state.grid[i - 1][j] !== 0;
                 if (check1 || check2) {
                     return true;
                 }
@@ -227,7 +227,7 @@ class Logic extends React.Component {
         //uses 8 helper methods, 2 for each direction. To move the tiles and
         //avoid edge cases, shift -> combine -> shift again. It imitates the way
         //we intuitively expect it to behave.
-        if (direction == Direction.RIGHT) {
+        if (direction === Direction.RIGHT) {
             let grid = this.state.grid;
             grid = this.shiftRight(grid);
             grid = this.combineRight(grid);
@@ -236,7 +236,7 @@ class Logic extends React.Component {
             return true;
         }
 
-        if (direction == Direction.LEFT) {
+        if (direction === Direction.LEFT) {
             let grid = this.state.grid;
             grid = this.shiftLeft(grid);
             grid = this.combineLeft(grid);
@@ -245,7 +245,7 @@ class Logic extends React.Component {
             return true;
         }
 
-        if (direction == Direction.UP) {
+        if (direction === Direction.UP) {
             let grid = this.state.grid;
             grid = this.shiftUp(grid);
             grid = this.combineUp(grid);
@@ -254,7 +254,7 @@ class Logic extends React.Component {
             return true;
         }
 
-        if (direction == Direction.DOWN) {
+        if (direction === Direction.DOWN) {
             let grid = this.state.grid;
             grid = this.shiftDown(grid);
             grid = this.combineDown(grid);
@@ -270,10 +270,10 @@ class Logic extends React.Component {
         //can't be moved right any further)
         for (let i = 0; i < this.GRID_SIZE; i++) {
             for (let j = this.GRID_SIZE - 2; j >= 0; j--) {
-                if (grid[i][j] != 0) {//source to be moved != 0
+                if (grid[i][j] !== 0) {//source to be moved !== 0
                     //searches for any 0 to the right of grid[i][j]
                     for (let k = this.GRID_SIZE - 1; k > j; k--) {
-                        if (grid[i][k] == 0) { //when 0 is found, move tile
+                        if (grid[i][k] === 0) { //when 0 is found, move tile
                             grid[i][k] = grid[i][j];
                             grid[i][j] = 0;
                             break;
@@ -290,7 +290,7 @@ class Logic extends React.Component {
         for (let i = 0; i < this.GRID_SIZE; i++) {
             for (let j = this.GRID_SIZE - 1; j > 0; j--) {
                 //if adjacent horizontal tiles are the same and non 0, combine
-                if (grid[i][j] == grid[i][j - 1] && grid[i][j] != 0) {
+                if (grid[i][j] === grid[i][j - 1] && grid[i][j] !== 0) {
                     grid[i][j] *= 2;
                     grid[i][j - 1] = 0;
                     let score = this.state.score;
@@ -308,10 +308,10 @@ class Logic extends React.Component {
         //can't be moved left any further)
         for (let i = 0; i < this.GRID_SIZE; i++) {
             for (let j = 1; j < this.GRID_SIZE; j++) {
-                if (grid[i][j] != 0) {//source to be moved != 0
+                if (grid[i][j] !== 0) {//source to be moved !== 0
                     //searches for any 0 to the left of grid[i][j]
                     for (let k = 0; k < j; k++) {
-                        if (grid[i][k] == 0) { //when 0 is found, move tile
+                        if (grid[i][k] === 0) { //when 0 is found, move tile
                             grid[i][k] = grid[i][j];
                             grid[i][j] = 0;
                             break;
@@ -328,7 +328,7 @@ class Logic extends React.Component {
         for (let i = 0; i < this.GRID_SIZE; i++) {
             for (let j = 0; j < this.GRID_SIZE - 1; j++) {
                 //if adjacent horizontal tiles are the same and non 0, combine
-                if (grid[i][j] == grid[i][j + 1] && grid[i][j] != 0) {
+                if (grid[i][j] === grid[i][j + 1] && grid[i][j] !== 0) {
                     grid[i][j] *= 2;
                     grid[i][j + 1] = 0;
                     let score = this.state.score;
@@ -346,10 +346,10 @@ class Logic extends React.Component {
         //can't be moved up any further)
         for (let i = 1; i < this.GRID_SIZE; i++) {
             for (let j = 0; j < this.GRID_SIZE; j++) {
-                if (grid[i][j] != 0) {//source to be moved != 0
+                if (grid[i][j] !== 0) {//source to be moved !== 0
                     for (let k = 0; k < i; k++) {
                         //searches for any 0 above grid[i][j]
-                        if (grid[k][j] == 0) { //when 0 is found, move tile
+                        if (grid[k][j] === 0) { //when 0 is found, move tile
                             grid[k][j] = grid[i][j];
                             grid[i][j] = 0;
                             break;
@@ -366,7 +366,7 @@ class Logic extends React.Component {
         for (let i = 0; i < this.GRID_SIZE - 1; i++) {
             for (let j = 0; j < this.GRID_SIZE; j++) {
                 //if adjacent vertical tiles are the same and non 0, combine
-                if (grid[i][j] == grid[i + 1][j] && grid[i][j] != 0) {
+                if (grid[i][j] === grid[i + 1][j] && grid[i][j] !== 0) {
                     grid[i][j] *= 2;
                     grid[i + 1][j] = 0;
                     let score = this.state.score;
@@ -384,10 +384,10 @@ class Logic extends React.Component {
         //can't be moved down any further)
         for (let i = this.GRID_SIZE - 2; i >= 0; i--) {
             for (let j = 0; j < this.GRID_SIZE; j++) {
-                if (grid[i][j] != 0) {//source to be moved != 0
+                if (grid[i][j] !== 0) {//source to be moved !== 0
                     //searches for any 0 below grid[i][j]
                     for (let k = this.GRID_SIZE - 1; k > i; k--) {
-                        if (grid[k][j] == 0) { //when 0 is found, move tile
+                        if (grid[k][j] === 0) { //when 0 is found, move tile
                             grid[k][j] = grid[i][j];
                             grid[i][j] = 0;
                             break;
@@ -404,7 +404,7 @@ class Logic extends React.Component {
         for (let i = this.GRID_SIZE - 1; i > 0; i--) {
             for (let j = 0; j < this.GRID_SIZE; j++) {
                 //if adjacent vertical tiles are the same and non 0, combine
-                if (grid[i][j] == grid[i - 1][j] && grid[i][j] != 0) {
+                if (grid[i][j] === grid[i - 1][j] && grid[i][j] !== 0) {
                     grid[i][j] *= 2;
                     grid[i - 1][j] = 0;
                     let score = this.state.score;

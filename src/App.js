@@ -17,7 +17,7 @@ class Board extends React.Component {
         super(props);
         this.keyPressHandler = this.keyPressHandler.bind(this);
     }
-    componentWillMount() {
+    componentDidMount() {
         document.addEventListener("keydown", this.keyPressHandler, false);
     }
 

@@ -99,11 +99,12 @@ class Logic extends React.Component {
     }
 
     addRandomTile() {
+        let grid = this.state.grid;
         //counts the number of empty spaces in the board
         let count = 0;
         for (let i = 0; i < this.GRID_SIZE; i++) {
             for (let j = 0; j < this.GRID_SIZE; j++) {
-                if (this.state.grid[i][j] === 0) {
+                if (grid[i][j] === 0) {
                     count++;
                 }
             }
@@ -123,15 +124,16 @@ class Logic extends React.Component {
         let iteration = 0; //to count numbers of 0s passed
         for (let i = 0; i < this.GRID_SIZE; i++) {
             for (let j = 0; j < this.GRID_SIZE; j++) {
-                if (iteration === tileLocation && this.state.grid[i][j] === 0) {
-                    this.state.grid[i][j] = tileValue;
+                if (iteration === tileLocation && grid[i][j] === 0) {
+                    grid[i][j] = tileValue;
                     return;
                 }
-                if (this.state.grid[i][j] === 0) {
+                if (grid[i][j] === 0) {
                     iteration++;//increment count when passing another 0
                 }
             }
         }
+        this.setState({ grid: grid })
     }
 
     canMove(direction) {

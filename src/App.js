@@ -167,6 +167,7 @@ class Logic extends React.Component {
             for (let j = 0; j < this.GRID_SIZE; j++) {
                 if (iteration === tileLocation && grid[i][j] === 0) {
                     grid[i][j] = tileValue;
+                    this.setState({ grid: grid })
                     return;
                 }
                 if (grid[i][j] === 0) {
@@ -174,7 +175,6 @@ class Logic extends React.Component {
                 }
             }
         }
-        this.setState({ grid: grid })
     }
 
     canMove(direction) {

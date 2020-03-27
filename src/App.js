@@ -194,20 +194,20 @@ class Logic extends React.Component {
         this.handleMovement = this.handleMovement.bind(this);
         this.isGameOver = this.isGameOver.bind(this);
 
-        const newGrid = [
+        let newGrid = [
             [0, 0, 0, 0],
             [0, 0, 0, 0],
             [0, 0, 0, 0],
             [0, 0, 0, 0]
         ]
 
+        for (let i = 0; i < this.NUM_START_TILES; i++) {
+            newGrid = this.addRandomTile(newGrid);
+        }
+
         this.state = {
             score: 0,
             grid: newGrid,
-        }
-
-        for (let i = 0; i < this.NUM_START_TILES; i++) {
-            this.addRandomTile();
         }
     }
 
@@ -222,8 +222,8 @@ class Logic extends React.Component {
         );
     }
 
-    addRandomTile() {
-        let grid = this.state.grid;
+    addRandomTile(inputGrid) {
+        let grid = inputGrid;
         //counts the number of empty spaces in the board
         let count = 0;
         for (let i = 0; i < this.GRID_SIZE; i++) {
@@ -250,8 +250,7 @@ class Logic extends React.Component {
             for (let j = 0; j < this.GRID_SIZE; j++) {
                 if (iteration === tileLocation && grid[i][j] === 0) {
                     grid[i][j] = tileValue;
-                    this.setState({ grid: grid })
-                    return;
+                    return grid;
                 }
                 if (grid[i][j] === 0) {
                     iteration++;//increment count when passing another 0
@@ -554,7 +553,8 @@ class Logic extends React.Component {
 
     handleMovement(direction) {
         if (this.move(direction)) {
-            this.addRandomTile();
+            const newGrid = this.addRandomTile(this.state.grid);
+            this.setState({ grid: newGrid })
         }
     }
 }

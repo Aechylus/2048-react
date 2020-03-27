@@ -463,10 +463,8 @@ class Logic extends React.Component {
     isGameOver() {
         //if no valid move exists, game over is true
         if (this.canMoveRight() || this.canMoveLeft() || this.canMoveUp() || this.canMoveDown()) {
-            console.log("Not game over. Can still move " + this.canMoveRight() + " " + this.canMoveLeft() + " " + this.canMoveUp() + " " + this.canMoveDown());
             return false;
         }
-        console.log("Game is over");
         return true;
     }
 

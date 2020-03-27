@@ -144,10 +144,6 @@ class Board extends React.Component {
         }
     }
 
-    renderSquare(i) {
-        return <Square value={i} />;
-    }
-
     render() {
         let status = 'Score: ' + this.props.score;
 
@@ -169,22 +165,22 @@ class Board extends React.Component {
                 <div className="game">
                     <div className="status">{status}</div>
                     <div className="board">
-                        {this.renderSquare(grid[0][0])}
-                        {this.renderSquare(grid[0][1])}
-                        {this.renderSquare(grid[0][2])}
-                        {this.renderSquare(grid[0][3])}
-                        {this.renderSquare(grid[1][0])}
-                        {this.renderSquare(grid[1][1])}
-                        {this.renderSquare(grid[1][2])}
-                        {this.renderSquare(grid[1][3])}
-                        {this.renderSquare(grid[2][0])}
-                        {this.renderSquare(grid[2][1])}
-                        {this.renderSquare(grid[2][2])}
-                        {this.renderSquare(grid[2][3])}
-                        {this.renderSquare(grid[3][0])}
-                        {this.renderSquare(grid[3][1])}
-                        {this.renderSquare(grid[3][2])}
-                        {this.renderSquare(grid[3][3])}
+                        <Square value={grid[0][0]} />
+                        <Square value={grid[0][1]} />
+                        <Square value={grid[0][2]} />
+                        <Square value={grid[0][3]} />
+                        <Square value={grid[1][0]} />
+                        <Square value={grid[1][1]} />
+                        <Square value={grid[1][2]} />
+                        <Square value={grid[1][3]} />
+                        <Square value={grid[2][0]} />
+                        <Square value={grid[2][1]} />
+                        <Square value={grid[2][2]} />
+                        <Square value={grid[2][3]} />
+                        <Square value={grid[3][0]} />
+                        <Square value={grid[3][1]} />
+                        <Square value={grid[3][2]} />
+                        <Square value={grid[3][3]} />
                     </div>
                 </ div>
             </div>

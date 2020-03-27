@@ -17,7 +17,6 @@ class Square extends React.Component {
         const COLOR_1024 = 'rgb(237, 197, 63)';
         const COLOR_2048 = 'rgb(237, 194, 46)';
         const COLOR_OTHER = 'black';
-        const COLOR_GAME_OVER = 'rgb(238, 228, 218, 0.73)';
 
         switch (value) {
             case 0:
@@ -152,33 +151,43 @@ class Board extends React.Component {
     render() {
         let status = 'Score: ' + this.props.score;
 
+        let style = {
+            opacity: 0
+        }
         if (this.props.gameOver()) {
-            status = "Game Over! " + status;
+            style = {
+                opacity: 0.75
+            }
         }
         const grid = this.props.grid;
 
         return (
             <div>
-                <div className="status">{status}</div>
-                <div className="board">
-                    {this.renderSquare(grid[0][0])}
-                    {this.renderSquare(grid[0][1])}
-                    {this.renderSquare(grid[0][2])}
-                    {this.renderSquare(grid[0][3])}
-                    {this.renderSquare(grid[1][0])}
-                    {this.renderSquare(grid[1][1])}
-                    {this.renderSquare(grid[1][2])}
-                    {this.renderSquare(grid[1][3])}
-                    {this.renderSquare(grid[2][0])}
-                    {this.renderSquare(grid[2][1])}
-                    {this.renderSquare(grid[2][2])}
-                    {this.renderSquare(grid[2][3])}
-                    {this.renderSquare(grid[3][0])}
-                    {this.renderSquare(grid[3][1])}
-                    {this.renderSquare(grid[3][2])}
-                    {this.renderSquare(grid[3][3])}
+                <div className="game-over" style={style}>
+                    Game Over
                 </div>
-            </ div>
+                <div className="game">
+                    <div className="status">{status}</div>
+                    <div className="board">
+                        {this.renderSquare(grid[0][0])}
+                        {this.renderSquare(grid[0][1])}
+                        {this.renderSquare(grid[0][2])}
+                        {this.renderSquare(grid[0][3])}
+                        {this.renderSquare(grid[1][0])}
+                        {this.renderSquare(grid[1][1])}
+                        {this.renderSquare(grid[1][2])}
+                        {this.renderSquare(grid[1][3])}
+                        {this.renderSquare(grid[2][0])}
+                        {this.renderSquare(grid[2][1])}
+                        {this.renderSquare(grid[2][2])}
+                        {this.renderSquare(grid[2][3])}
+                        {this.renderSquare(grid[3][0])}
+                        {this.renderSquare(grid[3][1])}
+                        {this.renderSquare(grid[3][2])}
+                        {this.renderSquare(grid[3][3])}
+                    </div>
+                </ div>
+            </div>
         );
     }
 }
@@ -562,9 +571,7 @@ class Logic extends React.Component {
 class App extends React.Component {
     render() {
         return (
-            <div className="game">
-                <Logic />
-            </div>
+            <Logic />
         );
     }
 }

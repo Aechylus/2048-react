@@ -67,7 +67,11 @@ class Board extends React.Component {
     }
 
     render() {
-        const status = 'Score: ' + this.props.score;
+        let status = 'Score: ' + this.props.score;
+
+        if (this.props.gameOver()) {
+            status = "Game Over! " + status;
+        }
         const grid = this.props.grid;
 
         return (
@@ -105,6 +109,7 @@ class Logic extends React.Component {
         this.TWO_PROBABILITY = 0.9;
 
         this.handleMovement = this.handleMovement.bind(this);
+        this.isGameOver = this.isGameOver.bind(this);
 
         const newGrid = [
             [0, 0, 0, 0],
@@ -129,6 +134,7 @@ class Logic extends React.Component {
                 score={this.state.score}
                 grid={this.state.grid}
                 onMovement={this.handleMovement}
+                gameOver={this.isGameOver}
             />
         );
     }
@@ -457,8 +463,10 @@ class Logic extends React.Component {
     isGameOver() {
         //if no valid move exists, game over is true
         if (this.canMoveRight() || this.canMoveLeft() || this.canMoveUp() || this.canMoveDown()) {
+            console.log("Not game over. Can still move " + this.canMoveRight() + " " + this.canMoveLeft() + " " + this.canMoveUp() + " " + this.canMoveDown());
             return false;
         }
+        console.log("Game is over");
         return true;
     }
 

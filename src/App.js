@@ -188,7 +188,7 @@ class Board extends React.Component {
     }
 }
 
-class Logic extends React.Component {
+class App extends React.Component {
     constructor(props) {
         super(props);
         // this.GRID_SIZE = this.props.boardSize < 2 ? 4 : this.props.boardSize;
@@ -561,14 +561,6 @@ class Logic extends React.Component {
             const newGrid = this.addRandomTile(this.state.grid);
             this.setState({ grid: newGrid })
         }
-    }
-}
-
-class App extends React.Component {
-    render() {
-        return (
-            <Logic />
-        );
     }
 }
 

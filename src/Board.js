@@ -147,9 +147,7 @@ class Board extends React.Component {
     render() {
         let status = 'Score: ' + this.props.score;
 
-        let style = {
-            opacity: 0
-        }
+        let style = {}
         if (this.props.gameOver()) {
             style = {
                 opacity: 0.75

@@ -39,7 +39,7 @@
     width: 100vw;
     height: 100vh;
     background: rgb(238, 228, 218);
-    opacity: 0.75;
+    opacity: 0;
     z-index: 1;
     font-size: 100px;
     font-weight: bold;

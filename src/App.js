@@ -12,6 +12,7 @@ class App extends React.Component {
 
         this.handleMovement = this.handleMovement.bind(this);
         this.isGameOver = this.isGameOver.bind(this);
+        this.resetBoard = this.resetBoard.bind(this);
 
         let newGrid = [
             [0, 0, 0, 0],
@@ -37,8 +38,27 @@ class App extends React.Component {
                 grid={this.state.grid}
                 onMovement={this.handleMovement}
                 gameOver={this.isGameOver}
+                resetBoard={this.resetBoard}
             />
         );
+    }
+
+    resetBoard() {
+        let newGrid = [
+            [0, 0, 0, 0],
+            [0, 0, 0, 0],
+            [0, 0, 0, 0],
+            [0, 0, 0, 0]
+        ]
+
+        for (let i = 0; i < this.NUM_START_TILES; i++) {
+            newGrid = this.addRandomTile(newGrid);
+        }
+
+        this.setState({
+            score: 0,
+            grid: newGrid,
+        });
     }
 
     addRandomTile(inputGrid) {

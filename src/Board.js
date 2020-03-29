@@ -98,6 +98,7 @@ class Board extends React.Component {
     constructor(props) {
         super(props);
         this.keyPressHandler = this.keyPressHandler.bind(this);
+        this.gameOverClickHandler = this.gameOverClickHandler.bind(this);
     }
     componentDidMount() {
         document.addEventListener("keydown", this.keyPressHandler, false);
@@ -144,6 +145,10 @@ class Board extends React.Component {
         }
     }
 
+    gameOverClickHandler() {
+        this.props.resetBoard();
+    }
+
     render() {
         let status = 'Score: ' + this.props.score;
 
@@ -162,7 +167,7 @@ class Board extends React.Component {
                     <div className="game-over-text">
                         Game Over
                         <div className="game-over-button">
-                            <button>New Game</button>
+                            <button onClick={this.gameOverClickHandler}>New Game</button>
                         </div>
                     </div>
                 </div>

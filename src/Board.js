@@ -164,8 +164,10 @@ class Board extends React.Component {
             <div>
                 <div className="game-over" style={style}>
                     <div className="game-over-overlay"></div>
-                    <div className="game-over-text">
-                        Game Over
+                    <div className="game-over-content">
+                        <div className="game-over-text">
+                            Game Over
+                        </div>
                         <div className="game-over-button">
                             <button onClick={this.gameOverClickHandler}>New Game</button>
                         </div>

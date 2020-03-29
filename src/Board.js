@@ -150,7 +150,7 @@ class Board extends React.Component {
         let style = {}
         if (this.props.gameOver()) {
             style = {
-                opacity: 0.75
+                opacity: 1
             }
         }
         const grid = this.props.grid;
@@ -158,6 +158,8 @@ class Board extends React.Component {
         return (
             <div>
                 <div className="game-over" style={style}>
+                    <div className="game-over-overlay">
+                    </div>
                     <div className="game-over-text">
                         Game Over
                     </div>
@@ -183,7 +185,7 @@ class Board extends React.Component {
                         <Square value={grid[3][3]} />
                     </div>
                 </ div>
-            </div>
+            </div >
         );
     }
 }

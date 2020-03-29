@@ -1,9 +1,3 @@
-.status {
-    margin-bottom: 30px;
-    text-align: center;
-    font-size: 50px;
-}
-
 .game {
     background: rgb(251, 248, 241);
     display: flex;
@@ -12,6 +6,13 @@
     align-items: center;
     text-align: center;
     min-height: 100vh;
+}
+
+.status {
+    margin-bottom: 30px;
+    text-align: center;
+    font-size: 50px;
+    color: rgb(119, 110, 101);
 }
 
 .board {
@@ -25,7 +26,6 @@
 
 .square {
     background: rgb(243, 226, 148);
-    /* border: 1px solid #000000; */
     font-size: 45px;
     font-weight: bold;
     line-height: 100px;

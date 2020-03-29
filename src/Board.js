@@ -158,7 +158,9 @@ class Board extends React.Component {
         return (
             <div>
                 <div className="game-over" style={style}>
-                    Game Over
+                    <div className="game-over-text">
+                        Game Over
+                    </div>
                 </div>
                 <div className="game">
                     <div className="status">{status}</div>
